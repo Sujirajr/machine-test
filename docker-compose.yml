@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /opt/lampp/htdocs/machine-test:/var/www
+    ports:
+      - "9000:9000"
+    environment:
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/database/logging.sqlite
+      APP_ENV: local
+      APP_DEBUG: "true"
+      REQUEST_LOGGER_ENABLED: "true"
+    working_dir: /var/www
+    container_name: machine-test-app
